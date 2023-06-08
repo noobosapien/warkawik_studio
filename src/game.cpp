@@ -104,7 +104,16 @@ void Game::generateOutput()
 
 void Game::loadData()
 {
-    Actor *temp = new Actor(this);
+    Actor *face = new Actor(this);
+    SpriteComponent *sc = new SpriteComponent(face, this->getRenderer());
+    sc->setTexture(getRenderer()->getTexture("src/assets/textures/face.png"));
+    face->setScale(0.1);
+    face->setPosition(glm::vec2(0.0, 0.2));
+
+    Actor *body = new Actor(this);
+    SpriteComponent *sc1 = new SpriteComponent(body, this->getRenderer());
+    sc1->setTexture(getRenderer()->getTexture("src/assets/textures/body.png"));
+    body->setScale(0.2);
 
     mUtils = new Utils(this);
 }

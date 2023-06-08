@@ -17,7 +17,6 @@ const options = [
   `-s SDL2_IMAGE_FORMATS=["png"]`,
   `-s MAX_WEBGL_VERSION=2`,
   `--preload-file src/assets/textures`,
-  `--preload-file src/assets/levels`,
   `--preload-file src/shaders`,
   '-s LLD_REPORT_UNDEFINED',
   '-s ALLOW_MEMORY_GROWTH=1',
