@@ -1,0 +1,17 @@
+
+#canvas {
+    position: fixed;
+}
+
+#game {
+    z-index: 1;
+    opacity: 1;
+}
+
+/* #game-ui {
+    top: 0; 
+    left: 0;  
+    position: relative; 
+    z-index: 10;
+} */
+
