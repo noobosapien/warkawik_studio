@@ -46,6 +46,9 @@ quat operator-(const quat &a, const quat &b);
 quat operator*(const quat &a, float b);
 quat operator-(const quat &q);
 
+quat operator*(const quat &Q1, const quat &Q2);
+glm::vec3 operator*(const quat &Q1, const glm::vec3 &v);
+
 bool operator==(const quat &left, const quat &right);
 bool operator!=(const quat &left, const quat &right);
 quat operator^(const quat &quat, float f);
@@ -69,9 +72,6 @@ namespace Quaterion
     quat normalized(const quat &q);
     quat conjugate(const quat &q);
     quat inverser(const quat &q);
-
-    quat operator*(const quat &Q1, const quat &Q2);
-    quat operator*(const quat &Q1, const glm::vec3 &v);
 
     quat mix(const quat &from, const quat &to, float t);
     quat nlerp(const quat &from, const quat &to, float t);
