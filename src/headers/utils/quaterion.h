@@ -3,84 +3,79 @@
 
 #define QUAT_EPSILON 0.000001f
 
-struct quat
+class Quat
 {
-    union
+public:
+    inline Quat()
     {
-        struct
-        {
-            float x;
-            float y;
-            float z;
-            float w;
-        };
+        x = 0.f;
+        y = 0.f;
+        z = 0.f;
+        w = 0.f;
+    };
 
-        struct
-        {
-            glm::vec3 vector;
-            float scalar;
-        };
+    inline Quat(float _x, float _y, float _z, float _w) : x(_x), y(_y), z(_z), w(_w){
 
-        float v[4];
-    } UQuaterion;
+                                                                               };
 
-    inline quat()
-    {
-        UQuaterion.x = 0.f;
-        UQuaterion.y = 0.f;
-        UQuaterion.z = 0.f;
-        UQuaterion.w = 0.f;
-    }
+    inline const float getX() { return x; }
+    inline const float getY() { return y; }
+    inline const float getZ() { return z; }
+    inline const float getW() { return w; }
 
-    inline quat(float _x, float _y, float _z, float _w)
-    {
-        UQuaterion.x = _x;
-        UQuaterion.y = _y;
-        UQuaterion.z = _z;
-        UQuaterion.w = _w;
-    }
+    friend Quat operator+(const Quat &a, const Quat &b);
+    friend Quat operator-(const Quat &a, const Quat &b);
+    friend Quat operator*(const Quat &a, float b);
+    friend Quat operator-(const Quat &q);
+
+    friend Quat operator*(const Quat &Q1, const Quat &Q2);
+    friend glm::vec3 operator*(const Quat &Q1, const glm::vec3 &v);
+
+    friend bool operator==(const Quat &left, const Quat &right);
+    friend bool operator!=(const Quat &left, const Quat &right);
+    friend Quat operator^(const Quat &Quat, float f);
+
+    static Quat angleAxis(float angle, const glm::vec3 &axis);
+    static Quat fromTo(const glm::vec3 &from, const glm::vec3 &to);
+
+    static glm::vec3 getAxis(const Quat &q);
+    static float getAngle(const Quat &q);
+
+    static bool sameOrientation(const Quat &left, const Quat &right);
+
+    static float dot(const Quat &a, const Quat &b);
+    static float lenSq(const Quat &q);
+    static float len(const Quat &q);
+
+    static void normalize(Quat &q);
+
+    static Quat normalized(const Quat &q);
+    static Quat conjugate(const Quat &q);
+    static Quat inverse(const Quat &q);
+
+    static Quat mix(const Quat &from, const Quat &to, float t);
+    static Quat nlerp(const Quat &from, const Quat &to, float t);
+
+    static Quat slerp(const Quat &start, const Quat &end, float t);
+    static Quat lookRotation(const glm::vec3 &direction, const glm::vec3 &up);
+
+    static glm::mat4 quatToMat4(const Quat &q);
+    static Quat mat4ToQuat(const glm::mat4 &m);
+
+private:
+    float x, y, z, w;
 };
 
-quat operator+(const quat &a, const quat &b);
-quat operator-(const quat &a, const quat &b);
-quat operator*(const quat &a, float b);
-quat operator-(const quat &q);
+Quat operator+(const Quat &a, const Quat &b);
+Quat operator-(const Quat &a, const Quat &b);
+Quat operator*(const Quat &a, float b);
+Quat operator-(const Quat &q);
 
-quat operator*(const quat &Q1, const quat &Q2);
-glm::vec3 operator*(const quat &Q1, const glm::vec3 &v);
+Quat operator*(const Quat &Q1, const Quat &Q2);
+glm::vec3 operator*(const Quat &Q1, const glm::vec3 &v);
 
-bool operator==(const quat &left, const quat &right);
-bool operator!=(const quat &left, const quat &right);
-quat operator^(const quat &quat, float f);
-
-namespace Quaterion
-{
-    quat angleAxis(float angle, const glm::vec3 &axis);
-    quat fromTo(const glm::vec3 &from, const glm::vec3 &to);
-
-    glm::vec3 getAxis(const quat &q);
-    float getAngle(const quat &q);
-
-    bool sameOrientation(const quat &left, const quat &right);
-
-    float dot(const quat &a, const quat &b);
-    float lenSq(const quat &q);
-    float len(const quat &q);
-
-    void normalize(quat &q);
-
-    quat normalized(const quat &q);
-    quat conjugate(const quat &q);
-    quat inverser(const quat &q);
-
-    quat mix(const quat &from, const quat &to, float t);
-    quat nlerp(const quat &from, const quat &to, float t);
-
-    quat slerp(const quat &start, const quat &end, float t);
-    quat lookRotation(const glm::vec3 &direction, const glm::vec3 &up);
-
-    glm::mat4 quatToMat4(const quat &q);
-    quat mat4ToQuat(const glm::mat4 &m);
-}
+bool operator==(const Quat &left, const Quat &right);
+bool operator!=(const Quat &left, const Quat &right);
+Quat operator^(const Quat &Quat, float f);
 
 #endif
