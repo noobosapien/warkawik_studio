@@ -17,7 +17,9 @@ class Component;
 // game specific
 #include "components/lightningcomponent.h"
 #include "components/transformcomponent.h"
+#include "components/gridcomponent.h"
 
 #include "actors/part.h"
+#include "actors/grid.h"
 
 #include "utils/gameUtils.h"

@@ -2,6 +2,8 @@
 
 int Renderer::WIN_WIDTH = 800;
 int Renderer::WIN_HEIGHT = 800;
+int Renderer::GAME_WIDTH = 800;
+int Renderer::GAME_HEIGHT = 800;
 glm::vec2 Renderer::WIN_RES = glm::vec2(1.0);
 
 Renderer::Renderer() : mCamera(nullptr)
@@ -53,6 +55,9 @@ void Renderer::setWinDim(int width, int height)
 {
     if (height > width)
     {
+        Renderer::GAME_HEIGHT = height;
+        Renderer::GAME_WIDTH = height;
+
         Renderer::WIN_HEIGHT = height;
         Renderer::WIN_WIDTH = width;
         Renderer::WIN_RES = glm::vec2(1.0, (float)height / width);
@@ -62,6 +67,9 @@ void Renderer::setWinDim(int width, int height)
     }
     else
     {
+        Renderer::GAME_HEIGHT = width;
+        Renderer::GAME_WIDTH = width;
+
         Renderer::WIN_HEIGHT = height;
         Renderer::WIN_WIDTH = width;
         Renderer::WIN_RES = glm::vec2((float)width / height, 1.0);
@@ -154,6 +162,38 @@ bool Renderer::loadShaders()
 
     if (!loadLightningShader())
         return false;
+
+    if (!loadGridShader())
+        return false;
+
+    return true;
+}
+
+bool Renderer::loadGridShader()
+{
+    auto mGridShader = new Shader();
+
+    if (!mGridShader->load("src/shaders/grid.vert", "src/shaders/grid.frag"))
+    {
+        return false;
+    }
+
+    mGridShader->setActive();
+
+    float vertices[] = {-1.0, 1.0,
+                        1.0, 1.0,
+                        1.0, -1.0,
+                        -1.0, -1.0};
+
+    unsigned int indices[] = {
+        0, 1, 2,
+        2, 3, 0};
+
+    mGridShader->setVertexData(vertices, 4, indices, 6, 2);
+
+    mGridShader->setAttrib("a_position", 2, 2, 0);
+
+    mShaders["grid"] = mGridShader;
 
     return true;
 }

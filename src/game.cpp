@@ -46,11 +46,34 @@ void Game::startGame()
 void Game::processInput()
 {
     SDL_Event event;
+    glm::vec2 mm;
 
     if (SDL_PollEvent(&event))
     {
         switch (event.type)
         {
+        case SDL_FINGERDOWN:
+            std::cout << "Finger down" << std::endl;
+            break;
+
+        case SDL_FINGERMOTION:
+            std::cout << "Finger motion" << std::endl;
+            break;
+
+        case SDL_MOUSEBUTTONDOWN:
+            std::cout << "Mouse down" << std::endl;
+            break;
+
+        case SDL_MOUSEMOTION:
+            std::cout << "Mouse motion rel: " << event.motion.x << ", " << event.motion.y << std::endl;
+            std::cout << "WIN_RES: " << Renderer::WIN_WIDTH << ", " << Renderer::WIN_HEIGHT << std::endl;
+
+            mm = MathUtils::changeWindowToGameCoords(glm::vec2(event.motion.x, event.motion.y));
+
+            // float ang = MathUtils::angle();
+
+            std::cout << "Mouse motion from center: " << mm.x << ", " << mm.y << std::endl;
+            break;
 
         default:
             break;
@@ -104,11 +127,14 @@ void Game::generateOutput()
 
 void Game::loadData()
 {
+
+    new Grid(this);
+
     Part *face = new Part(this);
     SpriteComponent *sc = new SpriteComponent(face, this->getRenderer());
     sc->setTexture(getRenderer()->getTexture("src/assets/textures/face.png"));
     face->setScale(0.2);
-    face->setPosition(glm::vec2(0.0, 0.2));
+    face->setPosition(glm::vec2(1.0, -1.0));
 
     Part *body = new Part(this);
     SpriteComponent *sc1 = new SpriteComponent(body, this->getRenderer());

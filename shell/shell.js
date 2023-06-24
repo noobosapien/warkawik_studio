@@ -33,7 +33,8 @@ function ModuleLoaded() {
     setWinDim(window.innerWidth, window.innerHeight);
 
     window.addEventListener('resize', () => {
-      setWinDim(window.innerWidth, window.innerHeight);
+      // setWinDim(window.innerWidth, window.innerHeight);
+      setWinDim(600, 600);
       canvas.scrollIntoView({ block: 'center' });
     });
   }

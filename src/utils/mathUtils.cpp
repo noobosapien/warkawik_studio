@@ -3,6 +3,38 @@
 namespace MathUtils
 {
 
+    glm::vec2 changeWindowToGameCoords(const glm::vec2 &v)
+    {
+        glm::vec2 ret(v);
+
+        // ret.x -= (Renderer::GAME_WIDTH / 2);
+        // ret.y -= (Renderer::GAME_HEIGHT / 2);
+        // ret.x /= (Renderer::GAME_WIDTH / 2);
+        // ret.y /= -(Renderer::GAME_HEIGHT / 2);
+
+        ret.x -= (Renderer::WIN_WIDTH / 2);
+        ret.y -= (Renderer::WIN_HEIGHT / 2);
+        ret.x /= (Renderer::WIN_WIDTH / 2);
+        ret.y /= -(Renderer::WIN_HEIGHT / 2);
+
+        return ret;
+    }
+
+    float angle(const glm::vec2 &l, const glm::vec2 &r)
+    {
+        float sqMagL = l.x * l.x + l.y * l.y;
+        float sqMagR = r.x * r.x + r.y * r.y;
+
+        if (sqMagL < VEC3_EPSILON || sqMagR < VEC3_EPSILON)
+        {
+            return 0.0f;
+        }
+
+        float dot = l.x * r.x + l.y * r.y;
+        float len = sqrtf(sqMagL) * sqrtf(sqMagR);
+        return acosf(dot / len);
+    }
+
     float angle(const glm::vec3 &l, const glm::vec3 &r)
     {
         float sqMagL = l.x * l.x + l.y * l.y + l.z * l.z;

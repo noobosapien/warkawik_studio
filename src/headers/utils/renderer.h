@@ -12,6 +12,7 @@ public:
     void setWinDim(int width, int height);
 
     bool loadShaders();
+    bool loadGridShader();
     bool loadSpriteShader();
     bool loadChargingShader();
     bool loadLightningShader();
@@ -29,6 +30,8 @@ public:
     class Camera *getCamera() { return mCamera; }
     class Texture *getTexture(const std::string &filename);
 
+    static int GAME_WIDTH;
+    static int GAME_HEIGHT;
     static int WIN_WIDTH;
     static int WIN_HEIGHT;
     static glm::vec2 WIN_RES;

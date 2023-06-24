@@ -3,7 +3,7 @@
 Part::Part(Game *game) : Actor(game)
 {
     mTransform = new TransformComponent(this);
-    mTransform->changeRotation(Quat(1, 1, 1, 0.5));
+    mTransform->changeRotation(Quat(1, 1, 1, 0.));
 }
 
 Part::~Part()
