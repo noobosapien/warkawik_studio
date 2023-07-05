@@ -49,6 +49,7 @@ private:
     bool mUpdatingActors;
 
     class Utils *mUtils;
+    class InputUtils *mInputUtils;
 };
 
 #endif

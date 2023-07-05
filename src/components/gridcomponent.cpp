@@ -24,10 +24,15 @@ void GridComponent::draw()
 
         model = mOwner->getWorldTransform();
 
-        mShader->setVec2Uniform("u_offset", glm::vec2(-0.1, 0.1));
-        mShader->setVec2Uniform("u_pitch", glm::vec2(64, 64));
+        mShader->setMatrixUniform("u_model", model);
+        mShader->setMatrixUniform("u_viewproj", mRenderer->getCamera()->getViewProj());
 
-        mShader->setFloatUniform("u_vpw", 600);
-        mShader->setFloatUniform("u_vph", 600);
+        glm::vec2 offset = mRenderer->getCamera()->getPosition() * 300.f;
+        // offset.y *= -1.f;
+
+        mShader->setVec2Uniform("u_offset", offset);
+        mShader->setVec2Uniform("u_pitch", glm::vec2(60, 60));
+
+        // std::cout << mRenderer->getCamera()->getPosition().x << ", " << mRenderer->getCamera()->getPosition().y << std::endl;
     }
 }

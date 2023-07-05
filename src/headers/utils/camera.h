@@ -21,6 +21,12 @@ public:
         mPosition = pos;
         recomputeViewProj();
     }
+
+    const glm::vec3 getPosition()
+    {
+        return mPosition;
+    }
+
     void setRotation(float rot)
     {
         mRotation = rot;

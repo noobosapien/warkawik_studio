@@ -1,6 +1,6 @@
 #include "headers/gamepch.h"
 
-Game::Game() : mState(EStart)
+Game::Game() : mState(EStart), mUtils(nullptr), mInputUtils(nullptr)
 {
 }
 
@@ -46,33 +46,29 @@ void Game::startGame()
 void Game::processInput()
 {
     SDL_Event event;
-    glm::vec2 mm;
 
     if (SDL_PollEvent(&event))
     {
         switch (event.type)
         {
         case SDL_FINGERDOWN:
-            std::cout << "Finger down" << std::endl;
             break;
 
         case SDL_FINGERMOTION:
-            std::cout << "Finger motion" << std::endl;
             break;
 
         case SDL_MOUSEBUTTONDOWN:
-            std::cout << "Mouse down" << std::endl;
+            mInputUtils->clicked(glm::vec2(event.motion.x, event.motion.y));
+
             break;
 
         case SDL_MOUSEMOTION:
-            std::cout << "Mouse motion rel: " << event.motion.x << ", " << event.motion.y << std::endl;
-            std::cout << "WIN_RES: " << Renderer::WIN_WIDTH << ", " << Renderer::WIN_HEIGHT << std::endl;
+            mInputUtils->mouseMotion(glm::vec2(event.motion.x, event.motion.y));
 
-            mm = MathUtils::changeWindowToGameCoords(glm::vec2(event.motion.x, event.motion.y));
+            break;
 
-            // float ang = MathUtils::angle();
-
-            std::cout << "Mouse motion from center: " << mm.x << ", " << mm.y << std::endl;
+        case SDL_MOUSEBUTTONUP:
+            mInputUtils->unclicked();
             break;
 
         default:
@@ -148,6 +144,7 @@ void Game::loadData()
     tsb->setTransform(TransformComponent::combine(tsb->getTransform(), tsf->getTransform()));
 
     mUtils = new Utils(this);
+    mInputUtils = new InputUtils(this);
 }
 
 void Game::loadNetwork(int pid, char *name)
