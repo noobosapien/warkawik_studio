@@ -19,6 +19,7 @@ class Component;
 #include "components/lightningcomponent.h"
 #include "components/transformcomponent.h"
 #include "components/gridcomponent.h"
+#include "components/rectcomponent.h"
 
 #include "actors/part.h"
 #include "actors/grid.h"
