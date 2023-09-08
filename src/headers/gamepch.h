@@ -20,6 +20,7 @@ class Component;
 #include "components/transformcomponent.h"
 #include "components/gridcomponent.h"
 #include "components/rectcomponent.h"
+#include "components/selectcomponent.h"
 
 #include "actors/part.h"
 #include "actors/grid.h"

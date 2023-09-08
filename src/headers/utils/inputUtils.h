@@ -11,6 +11,10 @@ public:
     void mouseMotion(const glm::vec2 &point);
     void unclicked();
 
+    const glm::vec2 getMouseMoveCoords() { return mMouseMovementCoords; }
+    const glm::vec2 getClickCoordinates() { return mClickedCoords; }
+    const bool getClicked() { return mClicked; }
+
 private:
     Game *mGame;
     Camera *mCamera;

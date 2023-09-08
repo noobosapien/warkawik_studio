@@ -1,6 +1,10 @@
 #include "headers/gamepch.h"
 
-Game::Game() : mState(EStart), mUtils(nullptr), mInputUtils(nullptr)
+Game::Game() : mState(EStart),
+               mUtils(nullptr),
+               mInputUtils(nullptr),
+               mSelectedActor(nullptr),
+               mHoveringActor(nullptr)
 {
 }
 
@@ -125,6 +129,8 @@ void Game::loadData()
 {
 
     new Grid(this);
+    mUtils = new Utils(this);
+    mInputUtils = new InputUtils(this);
 
     Part *face = new Part(this);
     SpriteComponent *sc = new SpriteComponent(face, this->getRenderer());
@@ -141,10 +147,7 @@ void Game::loadData()
     auto tsf = face->getTransformComponent();
     tsb->updateInfo();
     tsf->updateInfo();
-    tsb->setTransform(TransformComponent::combine(tsb->getTransform(), tsf->getTransform()));
-
-    mUtils = new Utils(this);
-    mInputUtils = new InputUtils(this);
+    // tsb->setTransform(TransformComponent::combine(tsb->getTransform(), tsf->getTransform()));
 }
 
 void Game::loadNetwork(int pid, char *name)

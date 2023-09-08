@@ -25,7 +25,7 @@ void InputUtils::mouseMotion(const glm::vec2 &point)
 {
     mMouseMovementCoords = MathUtils::changeWindowToGameCoords(point);
 
-    if (mClicked)
+    if (mClicked && mGame->getSelectedActor() == nullptr)
     {
         glm::vec2 difference = mMouseMovementCoords - mPrevMouseCoords;
         difference = glm::normalize(difference);
