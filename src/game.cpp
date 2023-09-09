@@ -4,7 +4,8 @@ Game::Game() : mState(EStart),
                mUtils(nullptr),
                mInputUtils(nullptr),
                mSelectedActor(nullptr),
-               mHoveringActor(nullptr)
+               mHoveringActor(nullptr),
+               lastId(1)
 {
 }
 
@@ -131,13 +132,13 @@ void Game::loadData()
     mUtils = new Utils(this);
     mInputUtils = new InputUtils(this);
 
-    Part *face = new Part(this);
+    Part *face = new Part(this, lastId++);
     SpriteComponent *sc = new SpriteComponent(face, this->getRenderer());
     sc->setTexture(getRenderer()->getTexture("src/assets/textures/face.png"));
     face->setScale(0.2);
     face->setPosition(glm::vec2(1.0, -1.0));
 
-    Part *body = new Part(this);
+    Part *body = new Part(this, lastId++);
     SpriteComponent *sc1 = new SpriteComponent(body, this->getRenderer());
     sc1->setTexture(getRenderer()->getTexture("src/assets/textures/body.png"));
     body->setScale(0.2);
@@ -215,4 +216,16 @@ void Game::setSelectedActor(Actor *actor)
 
     mSelectedActor = actor;
     ((class Part *)mSelectedActor)->setSelected(true);
+}
+
+void Game::removeSelectedActor(Actor *actor)
+{
+    if (mSelectedActor)
+    {
+        if (((class Part *)mSelectedActor)->getId() == ((class Part *)actor)->getId())
+        {
+            ((class Part *)mSelectedActor)->setSelected(false);
+            mSelectedActor = nullptr;
+        }
+    }
 }

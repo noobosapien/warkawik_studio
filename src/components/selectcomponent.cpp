@@ -12,7 +12,6 @@ void SelectComponent::update(float delta)
 {
     glm::vec2 inputCoords = mInputUtils->getMouseMoveCoords();
     inputCoords += glm::vec2(mCamera->getPosition());
-    // std::cout << inputCoords.x << ", " << inputCoords.y << std::endl;
 
     if (inputCoords.x < (mOwner->getScale() + mOwner->getPosition().x) &&
         inputCoords.x > mOwner->getPosition().x - mOwner->getScale() &&
@@ -25,6 +24,13 @@ void SelectComponent::update(float delta)
         if (mInputUtils->getClicked())
         {
             mOwner->getGame()->setSelectedActor(mOwner);
+        }
+    }
+    else
+    {
+        if (mInputUtils->getClicked())
+        {
+            mOwner->getGame()->removeSelectedActor(mOwner);
         }
     }
 }

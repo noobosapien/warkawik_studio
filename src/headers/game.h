@@ -35,7 +35,7 @@ public:
 
     Actor *getSelectedActor() { return mSelectedActor; }
     void setSelectedActor(Actor *actor);
-    void removeSelectedActor() { mSelectedActor = nullptr; }
+    void removeSelectedActor(Actor *actor);
 
     void setHoveringActor(Actor *actor) { mHoveringActor = actor; }
 
@@ -46,6 +46,7 @@ private:
 
     void loadData();
     void unloadData();
+    unsigned int lastId;
 
     void loadNetwork(int pid, char *name);
 
