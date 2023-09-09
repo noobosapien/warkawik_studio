@@ -12,6 +12,7 @@ public:
 
 private:
     InputUtils *mInputUtils;
+    Camera *mCamera;
 };
 
 #endif

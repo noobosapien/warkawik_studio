@@ -1,7 +1,8 @@
 #include "../headers/gamepch.h"
 
 SelectComponent::SelectComponent(Actor *actor) : Component(actor),
-                                                 mInputUtils(mOwner->getGame()->getInputUtils())
+                                                 mInputUtils(mOwner->getGame()->getInputUtils()),
+                                                 mCamera(mOwner->getGame()->getRenderer()->getCamera())
 {
 }
 
@@ -10,6 +11,7 @@ SelectComponent::~SelectComponent() {}
 void SelectComponent::update(float delta)
 {
     glm::vec2 inputCoords = mInputUtils->getMouseMoveCoords();
+    inputCoords += glm::vec2(mCamera->getPosition());
     // std::cout << inputCoords.x << ", " << inputCoords.y << std::endl;
 
     if (inputCoords.x < (mOwner->getScale() + mOwner->getPosition().x) &&

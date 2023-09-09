@@ -51,32 +51,31 @@ void Game::processInput()
 {
     SDL_Event event;
 
-    if (SDL_PollEvent(&event))
+    while (SDL_PollEvent(&event))
     {
+
         switch (event.type)
         {
         case SDL_FINGERDOWN:
-            break;
+            continue;
 
         case SDL_FINGERMOTION:
-            break;
+            continue;
 
         case SDL_MOUSEBUTTONDOWN:
             mInputUtils->clicked(glm::vec2(event.motion.x, event.motion.y));
-
-            break;
+            continue;
 
         case SDL_MOUSEMOTION:
             mInputUtils->mouseMotion(glm::vec2(event.motion.x, event.motion.y));
-
-            break;
+            continue;
 
         case SDL_MOUSEBUTTONUP:
             mInputUtils->unclicked();
-            break;
+            continue;
 
         default:
-            break;
+            continue;
         }
     }
 }
