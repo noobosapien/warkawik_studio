@@ -8,9 +8,12 @@ public:
     virtual ~Part();
 
     TransformComponent *getTransformComponent() { return mTransform; }
+    void setSelected(bool selected) { mSelected = selected; }
+    bool getSelected() { return mSelected; }
 
 private:
     TransformComponent *mTransform;
+    bool mSelected;
 };
 
 #endif

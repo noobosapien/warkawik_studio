@@ -157,6 +157,9 @@ bool Renderer::loadShaders()
     if (!loadSpriteShader())
         return false;
 
+    if (!loadSpriteSelectedShader())
+        return false;
+
     if (!loadChargingShader())
         return false;
 
@@ -225,6 +228,37 @@ bool Renderer::loadSpriteShader()
     mSpriteShader->setAttrib("a_texCoord", 2, 5, 3);
 
     mShaders["sprite"] = mSpriteShader;
+
+    return true;
+}
+
+bool Renderer::loadSpriteSelectedShader()
+{
+    auto mSpriteSelectedShader = new Shader();
+
+    if (!mSpriteSelectedShader->load("src/shaders/sprite.vert", "src/shaders/sprite_selected.frag"))
+    {
+        return false;
+    }
+
+    mSpriteSelectedShader->setActive();
+
+    float vertices[] = {
+        -1.f, 1.f, 0.f, 0.f, 1.f,
+        1.f, 1.f, 0.f, 1.f, 1.f,
+        1.f, -1.f, 0.f, 1.f, 0.f,
+        -1.f, -1.f, 0.f, 0.f, 0.f};
+
+    unsigned int indices[] = {
+        0, 1, 2,
+        2, 3, 0};
+
+    mSpriteSelectedShader->setVertexData(vertices, 4, indices, 6, 5);
+
+    mSpriteSelectedShader->setAttrib("a_position", 3, 5, 0);
+    mSpriteSelectedShader->setAttrib("a_texCoord", 2, 5, 3);
+
+    mShaders["sprite_selected"] = mSpriteSelectedShader;
 
     return true;
 }

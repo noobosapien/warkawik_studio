@@ -34,7 +34,7 @@ public:
     class InputUtils *getInputUtils() { return mInputUtils; }
 
     Actor *getSelectedActor() { return mSelectedActor; }
-    void setSelectedActor(Actor *actor) { mSelectedActor = actor; }
+    void setSelectedActor(Actor *actor);
     void removeSelectedActor() { mSelectedActor = nullptr; }
 
     void setHoveringActor(Actor *actor) { mHoveringActor = actor; }

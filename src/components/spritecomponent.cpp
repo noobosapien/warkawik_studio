@@ -7,6 +7,7 @@ SpriteComponent::SpriteComponent(Actor *owner, Renderer *renderer, int drawOrder
 {
     mRenderer->insertObject(this, mDrawOrder);
     mShader = mRenderer->getShader("sprite");
+    mSelectedShader = mRenderer->getShader("sprite_selected");
 }
 
 SpriteComponent::~SpriteComponent()
@@ -19,14 +20,26 @@ void SpriteComponent::draw()
 
     if (mTexture && mShader)
     {
-        mShader->setActive();
+        if (((class Part *)mOwner)->getSelected())
+        {
+            mSelectedShader->setActive();
+            glm::mat4 model = glm::mat4(1.f);
 
-        glm::mat4 model = glm::mat4(1.f);
+            model = mOwner->getWorldTransform();
 
-        model = mOwner->getWorldTransform();
+            mSelectedShader->setMatrixUniform("u_model", model);
+            mSelectedShader->setMatrixUniform("u_viewproj", mRenderer->getCamera()->getViewProj());
+        }
+        else
+        {
+            mShader->setActive();
+            glm::mat4 model = glm::mat4(1.f);
 
-        mShader->setMatrixUniform("u_model", model);
-        mShader->setMatrixUniform("u_viewproj", mRenderer->getCamera()->getViewProj());
+            model = mOwner->getWorldTransform();
+
+            mShader->setMatrixUniform("u_model", model);
+            mShader->setMatrixUniform("u_viewproj", mRenderer->getCamera()->getViewProj());
+        }
 
         mTexture->setActive();
     }

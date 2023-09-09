@@ -16,6 +16,7 @@ public:
 
 private:
     class Texture *mTexture;
+    Shader *mSelectedShader;
 
     int mTexWidth;
     int mTexHeight;

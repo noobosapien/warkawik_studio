@@ -206,3 +206,14 @@ void Game::callUIRPC(std::string command)
 {
     mUtils->callUIRPC(command);
 }
+
+void Game::setSelectedActor(Actor *actor)
+{
+    if (mSelectedActor)
+    {
+        ((class Part *)mSelectedActor)->setSelected(false);
+    }
+
+    mSelectedActor = actor;
+    ((class Part *)mSelectedActor)->setSelected(true);
+}

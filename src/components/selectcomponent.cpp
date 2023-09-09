@@ -17,15 +17,12 @@ void SelectComponent::update(float delta)
         inputCoords.y < (mOwner->getScale() + mOwner->getPosition().y) &&
         inputCoords.y > mOwner->getPosition().y - mOwner->getScale())
     {
-        std::cout << inputCoords.x << ", " << inputCoords.y << "  "
-                  << mInputUtils->getClicked()
-                  << std::endl;
 
         mOwner->getGame()->setHoveringActor(mOwner);
 
-        // if (mInputUtils->getClicked())
-        // {
-        //     mOwner->getGame()->setSelectedActor(mOwner);
-        // }
+        if (mInputUtils->getClicked())
+        {
+            mOwner->getGame()->setSelectedActor(mOwner);
+        }
     }
 }

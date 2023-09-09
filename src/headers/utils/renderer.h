@@ -14,6 +14,7 @@ public:
     bool loadShaders();
     bool loadGridShader();
     bool loadSpriteShader();
+    bool loadSpriteSelectedShader();
     bool loadChargingShader();
     bool loadLightningShader();
 
