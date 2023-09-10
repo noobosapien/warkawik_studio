@@ -12,10 +12,14 @@ public:
 
     int getDrawOrder() { return mDrawOrder; }
 
+    inline bool getVisible() { return mVisible; }
+    inline void setVisible(bool visible) { mVisible = visible; }
+
 protected:
     Renderer *mRenderer;
     Shader *mShader;
     int mDrawOrder;
+    bool mVisible;
 };
 
 #endif

@@ -18,7 +18,7 @@ SpriteComponent::~SpriteComponent()
 void SpriteComponent::draw()
 {
 
-    if (mTexture && mShader)
+    if (mTexture && mShader && mVisible)
     {
         if (((class Part *)mOwner)->getSelected())
         {

@@ -143,10 +143,22 @@ void Game::loadData()
     sc1->setTexture(getRenderer()->getTexture("src/assets/textures/body.png"));
     body->setScale(0.2);
 
+    MoveButton *mb = new MoveButton(this, lastId++);
+    SpriteComponent *sc2 = new SpriteComponent(mb, this->getRenderer());
+    sc2->setTexture(getRenderer()->getTexture("src/assets/textures/move.png"));
+
+    mb->setNormalSprite(sc2);
+    mb->setHoveringSprite(sc2);
+    mb->setClickedSprite(sc2);
+    mb->setScale(0.05);
+    mb->setPosition(glm::vec2(-0.7, 0.7));
+    mb->setVisible(true);
+
     auto tsb = body->getTransformComponent();
     auto tsf = face->getTransformComponent();
     tsb->updateInfo();
     tsf->updateInfo();
+    mb->getTransformComponent()->updateInfo();
     // tsb->setTransform(TransformComponent::combine(tsb->getTransform(), tsf->getTransform()));
 }
 

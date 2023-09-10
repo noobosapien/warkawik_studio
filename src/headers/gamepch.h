@@ -24,5 +24,7 @@ class Component;
 
 #include "actors/part.h"
 #include "actors/grid.h"
+#include "actors/buttons/button.h"
+#include "actors/buttons/movebutton.h"
 
 #include "utils/gameUtils.h"
