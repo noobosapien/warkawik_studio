@@ -144,7 +144,7 @@ void Game::loadData()
     body->setScale(0.2);
 
     MoveButton *mb = new MoveButton(this, lastId++);
-    SpriteComponent *sc2 = new SpriteComponent(mb, this->getRenderer());
+    StaticSpriteComponent *sc2 = new StaticSpriteComponent(mb, this->getRenderer());
     sc2->setTexture(getRenderer()->getTexture("src/assets/textures/move.png"));
 
     mb->setNormalSprite(sc2);

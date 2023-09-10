@@ -2,6 +2,7 @@
 
 MoveButton::MoveButton(Game *game, unsigned int id) : Button(game, id)
 {
+    new ClickComponent(this);
 }
 
 MoveButton::~MoveButton()

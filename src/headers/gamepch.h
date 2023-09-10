@@ -6,6 +6,7 @@ class Component;
 #include "components/component.h"
 #include "components/rendercomponent.h"
 #include "components/spritecomponent.h"
+#include "components/staticspritecomponent.h"
 #include "utils/camera.h"
 #include "utils/shader.h"
 #include "utils/texture.h"
@@ -21,6 +22,7 @@ class Component;
 #include "components/gridcomponent.h"
 #include "components/rectcomponent.h"
 #include "components/selectcomponent.h"
+#include "components/buttons/clickcomponent.h"
 
 #include "actors/part.h"
 #include "actors/grid.h"

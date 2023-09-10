@@ -29,19 +29,19 @@ public:
     }
     inline bool getVisible() { return mVisible; }
 
-    inline void setNormalSprite(SpriteComponent *sprite)
+    inline void setNormalSprite(StaticSpriteComponent *sprite)
     {
         mNormalSprite = sprite;
         mNormalSprite->setVisible(true);
     }
 
-    inline void setHoveringSprite(SpriteComponent *sprite)
+    inline void setHoveringSprite(StaticSpriteComponent *sprite)
     {
         mHoveringSprite = sprite;
         mHoveringSprite->setVisible(false);
     }
 
-    inline void setClickedSprite(SpriteComponent *sprite)
+    inline void setClickedSprite(StaticSpriteComponent *sprite)
     {
         mClickedSprite = sprite;
         mClickedSprite->setVisible(false);
@@ -49,9 +49,9 @@ public:
 
 protected:
     bool mVisible;
-    SpriteComponent *mNormalSprite;
-    SpriteComponent *mHoveringSprite;
-    SpriteComponent *mClickedSprite;
+    StaticSpriteComponent *mNormalSprite;
+    StaticSpriteComponent *mHoveringSprite;
+    StaticSpriteComponent *mClickedSprite;
 
 private:
     TransformComponent *mTransform;

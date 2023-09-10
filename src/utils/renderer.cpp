@@ -160,6 +160,9 @@ bool Renderer::loadShaders()
     if (!loadSpriteSelectedShader())
         return false;
 
+    if (!loadStaticSpriteShader())
+        return false;
+
     if (!loadChargingShader())
         return false;
 
@@ -259,6 +262,37 @@ bool Renderer::loadSpriteSelectedShader()
     mSpriteSelectedShader->setAttrib("a_texCoord", 2, 5, 3);
 
     mShaders["sprite_selected"] = mSpriteSelectedShader;
+
+    return true;
+}
+
+bool Renderer::loadStaticSpriteShader()
+{
+    auto mStaticSpriteShader = new Shader();
+
+    if (!mStaticSpriteShader->load("src/shaders/static_sprite.vert", "src/shaders/static_sprite.frag"))
+    {
+        return false;
+    }
+
+    mStaticSpriteShader->setActive();
+
+    float vertices[] = {
+        -1.f, 1.f, 0.f, 0.f, 1.f,
+        1.f, 1.f, 0.f, 1.f, 1.f,
+        1.f, -1.f, 0.f, 1.f, 0.f,
+        -1.f, -1.f, 0.f, 0.f, 0.f};
+
+    unsigned int indices[] = {
+        0, 1, 2,
+        2, 3, 0};
+
+    mStaticSpriteShader->setVertexData(vertices, 4, indices, 6, 5);
+
+    mStaticSpriteShader->setAttrib("a_position", 3, 5, 0);
+    mStaticSpriteShader->setAttrib("a_texCoord", 2, 5, 3);
+
+    mShaders["static_sprite"] = mStaticSpriteShader;
 
     return true;
 }

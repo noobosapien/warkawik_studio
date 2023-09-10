@@ -26,11 +26,11 @@ void SelectComponent::update(float delta)
             mOwner->getGame()->setSelectedActor(mOwner);
         }
     }
-    else
-    {
-        if (mInputUtils->getClicked())
-        {
-            mOwner->getGame()->removeSelectedActor(mOwner);
-        }
-    }
+    // else
+    // {
+    //     if (mInputUtils->getClicked())
+    //     {
+    //         mOwner->getGame()->removeSelectedActor(mOwner);
+    //     }
+    // }
 }
