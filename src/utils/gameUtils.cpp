@@ -90,6 +90,22 @@ void Utils::addUICommand(std::string name, UICalls method)
     mUICommands[name] = method;
 }
 
+std::vector<std::string> Utils::splitString(std::string str, char del)
+{
+    std::vector<std::string> sub;
+
+    std::stringstream ss(str);
+    std::string word;
+
+    while (!ss.eof())
+    {
+        getline(ss, word, del);
+        sub.push_back(word);
+    }
+
+    return sub;
+}
+
 template <typename T>
 T Curves::cubic_bezier(T a, T b, T c, T d, float time)
 {

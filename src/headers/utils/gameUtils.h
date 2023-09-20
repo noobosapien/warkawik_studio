@@ -9,6 +9,8 @@ public:
 
     void callUIRPC(std::string command);
 
+    static std::vector<std::string> splitString(std::string, char);
+
 private:
     Game *mGame;
 

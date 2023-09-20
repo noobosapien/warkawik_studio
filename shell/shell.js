@@ -30,7 +30,7 @@ function ModuleLoaded() {
   //UI RELATED//
 
   if (setWinDim) {
-    setWinDim(window.innerWidth, window.innerHeight);
+    setWinDim(600, 600);
 
     window.addEventListener('resize', () => {
       // setWinDim(window.innerWidth, window.innerHeight);

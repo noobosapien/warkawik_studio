@@ -15,6 +15,7 @@ class Component;
 #include "utils/quaterion.h"
 #include "utils/mathUtils.h"
 #include "utils/inputUtils.h"
+#include "utils/obj.h"
 
 // game specific
 #include "components/lightningcomponent.h"
