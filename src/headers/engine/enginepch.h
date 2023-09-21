@@ -16,6 +16,7 @@
 #include <map>
 #include <stdarg.h>
 #include <memory>
+#include <regex>
 
 #ifdef __EMSCRIPTEN__
 #include <emscripten.h>

@@ -147,6 +147,8 @@ void Game::loadData()
     StaticSpriteComponent *sc2 = new StaticSpriteComponent(mb, this->getRenderer());
     sc2->setTexture(getRenderer()->getTexture("src/assets/textures/move.png"));
 
+    OBJ *obj = new OBJ("src/assets/obj/book.obj");
+
     mb->setNormalSprite(sc2);
     mb->setHoveringSprite(sc2);
     mb->setClickedSprite(sc2);

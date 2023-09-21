@@ -106,6 +106,36 @@ std::vector<std::string> Utils::splitString(std::string str, char del)
     return sub;
 }
 
+std::vector<std::string> Utils::splitString(std::string str, std::string del)
+{
+    std::vector<std::string> sub;
+
+    std::string substring;
+
+    for (int i = 0; i < str.size(); i++)
+    {
+        if (str[i] == *(del.c_str()))
+        {
+            if (substring.size())
+            {
+                sub.push_back(substring);
+            }
+
+            substring = "";
+            continue;
+        }
+
+        substring += str[i];
+    }
+
+    if (substring.size())
+    {
+        sub.push_back(substring);
+    }
+
+    return sub;
+}
+
 template <typename T>
 T Curves::cubic_bezier(T a, T b, T c, T d, float time)
 {

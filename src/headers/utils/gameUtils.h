@@ -10,6 +10,7 @@ public:
     void callUIRPC(std::string command);
 
     static std::vector<std::string> splitString(std::string, char);
+    static std::vector<std::string> splitString(std::string, std::string);
 
 private:
     Game *mGame;
