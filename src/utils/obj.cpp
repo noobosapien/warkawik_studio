@@ -212,14 +212,21 @@ void OBJ_VT::execute(std::vector<std::string> parts, std::string unparsed_args)
 
 void OBJ_F::execute(std::vector<std::string> parts, std::string unparsed_args)
 {
-    mOBJ->setGeometry();
+    // mOBJ->setGeometry();
     int numTriangles = parts.size() - 2;
+
+    for (auto part : parts)
+    {
+        std::cout << part << std::endl;
+    }
+    std::cout << std::endl;
 
     for (int tri = 0; tri < numTriangles; ++tri)
     {
-        mOBJ->addVertex(parts[0]);
-        mOBJ->addVertex(parts[tri + 1]);
-        mOBJ->addVertex(parts[tri + 2]);
+
+        // mOBJ->addVertex(parts[0]);
+        // mOBJ->addVertex(parts[tri + 1]);
+        // mOBJ->addVertex(parts[tri + 2]);
     }
 }
 
